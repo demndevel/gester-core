@@ -2,6 +2,7 @@ plugins {
 	id("com.android.library")
 	kotlin("android")
 	id("kotlin-parcelize")
+	`maven-publish`
 }
 
 android {
@@ -9,6 +10,10 @@ android {
 	compileSdk = 34
 
 	defaultConfig {
+		aarMetadata {
+			minSdk = 29
+		}
+
 		minSdk = 29
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -38,4 +43,27 @@ android {
 
 dependencies {
 	testImplementation(kotlin("test"))
+}
+
+publishing {
+	publications {
+		register<MavenPublication>("release") {
+		}
+	}
+	repositories {
+		maven {
+			name = "core"
+			url = uri(layout.buildDirectory.dir("repo"))
+		}
+	}
+}
+
+tasks.register<Zip>("generateRepo") {
+	val publishTask = tasks.named(
+		"publishReleasePublicationToMyrepoRepository",
+		PublishToMavenRepository::class.java
+	)
+	from(publishTask.map { it.repository.url })
+	into("gester")
+	archiveFileName.set("gester-core.zip")
 }
