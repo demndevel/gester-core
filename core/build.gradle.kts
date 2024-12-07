@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-	namespace = "io.github.demndevel.gester.core"
+	namespace = "com.github.demndevel.gester.core"
 	compileSdk = 34
 
 	defaultConfig {
@@ -54,7 +54,7 @@ dependencies {
 publishing {
 	publications {
 		register<MavenPublication>("release") {
-			groupId = "io.github.demndevel"
+			groupId = "com.github.demndevel"
 			artifactId = "gester-core"
 			version = "0.0.9"
 			pom {
