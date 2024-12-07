@@ -4,5 +4,5 @@ jdk:
 before_install:
   - ./scripts/prepareJitpackEnvironment.sh
 install:
-  - FILE="-Dfile=gester-core.aar"
+  - FILE="-Dfile=core-release.aar"
   - mvn install:install-file $FILE -DgroupId=com.github.demndevel -DartifactId=gester-core -Dversion=0.0.1 -Dpackaging=aar -DgeneratePom=true
