@@ -3,6 +3,6 @@ jdk:
   - openjdk17
 before_install:
   - ./scripts/prepareJitpackEnvironment.sh
-install:
-  - FILE="-Dfile=core-release.aar"
-  - mvn install:install-file $FILE -DgroupId=com.github.demndevel -DartifactId=gester-core -Dversion=0.0.9 -Dpackaging=aar -DgeneratePom=true
+#install:
+#  - FILE="-Dfile=core-release.aar"
+#  - mvn install:install-file $FILE -DgroupId=com.github.demndevel -DartifactId=gester-core -Dversion=0.0.9 -Dpackaging=aar -DgeneratePom=true
