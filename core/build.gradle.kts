@@ -56,7 +56,7 @@ publishing {
 		register<MavenPublication>("release") {
 			groupId = "io.github.demndevel"
 			artifactId = "gester-core"
-			version = "0.0.1"
+			version = "0.0.9"
 			pom {
 				description = "first release!!"
 			}
