@@ -41,6 +41,12 @@ android {
 	}
 }
 
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
 dependencies {
 	testImplementation(kotlin("test"))
 }
@@ -48,22 +54,15 @@ dependencies {
 publishing {
 	publications {
 		register<MavenPublication>("release") {
+			groupId = "io.github.demndevel"
+			artifactId = "gester-core"
+			version = "0.0.1"
+			pom {
+				description = "first release!!"
+			}
 		}
 	}
 	repositories {
-		maven {
-			name = "core"
-			url = uri(layout.buildDirectory.dir("repo"))
-		}
+		mavenLocal()
 	}
-}
-
-tasks.register<Zip>("generateRepo") {
-	val publishTask = tasks.named(
-		"publishReleasePublicationToMyrepoRepository",
-		PublishToMavenRepository::class.java
-	)
-	from(publishTask.map { it.repository.url })
-	into("gester")
-	archiveFileName.set("gester-core.zip")
 }
