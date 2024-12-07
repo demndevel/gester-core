@@ -1,4 +1,4 @@
-package io.github.demndevel.gester.core
+package com.github.demndevel.gester.core
 
 public data class TestCatClass(
 	val catName: String
