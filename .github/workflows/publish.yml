@@ -1,6 +1,8 @@
 name: Library Release Deploy
 
 on:
+  push:
+    [ "main" ]
   workflow_dispatch:
 
 env:
