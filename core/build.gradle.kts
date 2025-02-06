@@ -59,7 +59,7 @@ mavenPublishing {
 
 	signAllPublications()
 
-	coordinates("io.github.demndevel", "gester-core", "0.0.9")
+	coordinates("io.github.demndevel", "gester-core", "0.0.10")
 
 	pom {
 		name.set("My Library")
