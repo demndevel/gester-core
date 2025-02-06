@@ -1,9 +1,9 @@
 package com.demn.plugincore
 
-import com.demn.plugincore.operationresult.BasicOperationResult
-import com.demn.plugincore.operationresult.TransitionOperationResult
-import com.demn.plugincore.parcelables.ParcelableOperationResult
-import com.demn.plugincore.parcelables.toOperationResult
+import io.github.demndevel.gester.core.operationresult.BasicOperationResult
+import io.github.demndevel.gester.core.operationresult.TransitionOperationResult
+import io.github.demndevel.gester.core.parcelables.ParcelableOperationResult
+import io.github.demndevel.gester.core.parcelables.toOperationResult
 import kotlin.test.Test
 
 class ParcelableOperationResultTest {

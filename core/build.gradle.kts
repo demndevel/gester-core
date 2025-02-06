@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-	namespace = "com.github.demndevel.gester.core"
+	namespace = "io.github.demndevel.gester.core"
 	compileSdk = 34
 
 	defaultConfig {
@@ -59,13 +59,13 @@ mavenPublishing {
 
 	signAllPublications()
 
-	coordinates("io.github.demndevel", "gester-core", "0.0.10")
+	coordinates("io.github.demndevel", "gester-core", "0.0.11")
 
 	pom {
-		name.set("My Library")
-		description.set("A description of what my library does.")
+		name.set("Gester Core")
+		description.set("Library that allows you to create your own plugins for Gester app")
 		inceptionYear.set("2025")
-		url.set("https://github.com/username/mylibrary/")
+		url.set("https://github.com/demndevel/gester-core/")
 		licenses {
 			license {
 				name.set("The Apache License, Version 2.0")
@@ -81,9 +81,9 @@ mavenPublishing {
 			}
 		}
 		scm {
-			url.set("https://github.com/username/mylibrary/")
-			connection.set("scm:git:git://github.com/username/mylibrary.git")
-			developerConnection.set("scm:git:ssh://git@github.com/username/mylibrary.git")
+			url.set("https://github.com/demndevel/gester-core/")
+			connection.set("scm:git:git://github.com/demndevel/gester-core.git")
+			developerConnection.set("scm:git:ssh://git@github.com/demndevel/gester-core.git")
 		}
 	}
 }
