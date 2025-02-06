@@ -21,9 +21,5 @@ jobs:
         uses: gradle/gradle-build-action@v2.4.2
       - name: Gradle Sync
         run: ./gradlew
-      - name: Add Sdk Version to Env
-        run: |
-          release_version=$(./gradlew printVersion -q)
-          echo "release_version=$release_version" >> $GITHUB_ENV
       - name: Publish ${{ env.release_version }}
         run: ./gradlew publishAllPublicationsToMavenCentralRepository
