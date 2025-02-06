@@ -2,7 +2,7 @@ name: Library Release Deploy
 
 on:
   push:
-    [ "main" ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 env:
