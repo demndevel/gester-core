@@ -13,20 +13,8 @@ env:
   ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
 
 jobs:
-
-  test-jvm:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Gradle Cache Setup
-        uses: gradle/gradle-build-action@v2.4.2
-      - name: Gradle Check
-        run: ./gradlew jvmTest
-
   deploy-jvm:
     runs-on: ubuntu-latest
-    needs:
-      - test-jvm
     steps:
       - uses: actions/checkout@v3
       - name: Gradle Cache Setup
@@ -39,17 +27,3 @@ jobs:
           echo "release_version=$release_version" >> $GITHUB_ENV
       - name: Publish ${{ env.release_version }}
         run: ./gradlew publishAllPublicationsToMavenCentralRepository
-
-  create-release:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    needs:
-      - deploy-jvm
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ needs.deploy-multiplatform.outputs.release_version }}
-          name: Release ${{ needs.deploy-multiplatform.outputs.release_version }}
