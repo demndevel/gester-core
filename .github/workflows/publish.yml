@@ -1,8 +1,6 @@
 name: Library Release Deploy
 
 on:
-  push:
-    branches: [ "main" ]
   workflow_dispatch:
 
 env:
@@ -40,7 +38,7 @@ jobs:
           release_version=$(./gradlew printVersion -q)
           echo "release_version=$release_version" >> $GITHUB_ENV
       - name: Publish ${{ env.release_version }}
-        run: ./gradlew publishJvmPublicationToMavenCentralRepository
+        run: ./gradlew publishAllPublicationsToMavenCentralRepository
 
   create-release:
     runs-on: ubuntu-latest

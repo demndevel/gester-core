@@ -1,8 +1,11 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
 	id("com.android.library")
 	kotlin("android")
 	id("kotlin-parcelize")
-	`maven-publish`
+	id("signing")
+	id("com.vanniktech.maven.publish") version "0.30.0"
 }
 
 android {
@@ -51,18 +54,50 @@ dependencies {
 	testImplementation(kotlin("test"))
 }
 
-publishing {
-	publications {
-		register<MavenPublication>("release") {
-			groupId = "com.github.demndevel"
-			artifactId = "gester-core"
-			version = "0.0.9"
-			pom {
-				description = "first release!!"
+mavenPublishing {
+	publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+	signAllPublications()
+
+	coordinates("io.github.demndevel", "gester-core", "0.0.9")
+
+	pom {
+		name.set("My Library")
+		description.set("A description of what my library does.")
+		inceptionYear.set("2025")
+		url.set("https://github.com/username/mylibrary/")
+		licenses {
+			license {
+				name.set("The Apache License, Version 2.0")
+				url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+				distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
 			}
 		}
+		developers {
+			developer {
+				id.set("demndevel")
+				name.set("demn")
+				url.set("https://github.com/demndevel/")
+			}
+		}
+		scm {
+			url.set("https://github.com/username/mylibrary/")
+			connection.set("scm:git:git://github.com/username/mylibrary.git")
+			developerConnection.set("scm:git:ssh://git@github.com/username/mylibrary.git")
+		}
 	}
-	repositories {
-		mavenLocal()
-	}
+}
+
+signing {
+	val keyId = System.getenv("ORG_GRADLE_PROJECT_signingInMemoryKeyId")
+	val signingKey = System.getenv("ORG_GRADLE_PROJECT_signingInMemoryKey")
+	val keyPassword = System.getenv("ORG_GRADLE_PROJECT_signingInMemoryKeyPassword")
+
+	useInMemoryPgpKeys(
+		keyId,
+		signingKey,
+		keyPassword,
+	)
+
+	sign(publishing.publications)
 }
